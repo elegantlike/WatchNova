@@ -14,11 +14,20 @@ IMG = st.secrets["TMDB_IMG_BASE"]
 PLAYER = st.secrets["MOVIE_PLAYER"]
 
 # ---------------------------------------------------
-# GLOBAL ADS (POPUNDER)
+# GLOBAL ADS (POPUNDER LOAD)
 # ---------------------------------------------------
 
 st.markdown("""
 <script src="https://pl28911001.effectivegatecpm.com/3a/71/db/3a71db8145b2db0756eb64092929f733.js"></script>
+<script src="https://pl28911102.effectivegatecpm.com/5b/79/7b/5b797b21587feb30c918fe8ed648990a.js"></script>
+""", unsafe_allow_html=True)
+
+# ---------------------------------------------------
+# POPUNDER TRIGGER FUNCTION (ON PLAY CLICK)
+# ---------------------------------------------------
+
+def trigger_popunder():
+    st.markdown("""
 <script src="https://pl28911102.effectivegatecpm.com/5b/79/7b/5b797b21587feb30c918fe8ed648990a.js"></script>
 """, unsafe_allow_html=True)
 
@@ -161,6 +170,9 @@ def movie_grid(data):
                 )
 
                 if st.button("▶ Play", key=f"play_{m['id']}"):
+
+                    # Trigger popunder ad when user clicks play
+                    trigger_popunder()
 
                     st.session_state["movie"] = m
                     st.session_state["scroll"] = True
